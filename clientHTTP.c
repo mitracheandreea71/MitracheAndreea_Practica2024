@@ -4,66 +4,117 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <netdb.h>
 
-#define MAX_RESPONSE_SIZE 4096
+#define INITIAL_BUFFER_SIZE 8192 // Initial buffer size
 
-// Funcție pentru a trimite o cerere GET către server
 void send_http_get(const char *hostname, const char *path) {
     int sockfd;
-    struct sockaddr_in server_addr;
-    char request[1000], response[MAX_RESPONSE_SIZE];
-    
-    // Creare socket
-    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        perror("Socket creation error");
+    struct addrinfo hints, *res, *p;
+    char request[1024];
+    char *response = malloc(INITIAL_BUFFER_SIZE);
+    int buffer_size = INITIAL_BUFFER_SIZE;
+
+    if (response == NULL) {
+        perror("Failed to allocate memory");
         exit(EXIT_FAILURE);
     }
-    
-    // Setare adresa serverului
-    server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(80); // Portul HTTP
-    if (inet_pton(AF_INET, hostname, &server_addr.sin_addr) <= 0) {
-        perror("Invalid address/ Address not supported");
+
+    // Prepare the hints structure
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_family = AF_INET; // IPv4
+    hints.ai_socktype = SOCK_STREAM; // TCP
+
+    // Resolve the hostname to an address
+    if (getaddrinfo(hostname, "80", &hints, &res) != 0) {
+        perror("getaddrinfo failed");
+        free(response);
         exit(EXIT_FAILURE);
     }
-    
-    // Conectare la server
-    if (connect(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
-        perror("Connection failed");
+
+    // Iterate through the results and connect to the first we can
+    for (p = res; p != NULL; p = p->ai_next) {
+        if ((sockfd = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) < 0) {
+            continue;
+        }
+
+        if (connect(sockfd, p->ai_addr, p->ai_addrlen) == 0) {
+            break;
+        }
+
+        close(sockfd);
+    }
+
+    if (p == NULL) {
+        perror("Failed to connect");
+        free(response);
+        freeaddrinfo(res); // Free addrinfo on failure
         exit(EXIT_FAILURE);
     }
-    
-    // Construirea cererii HTTP GET
-    sprintf(request, "GET %s HTTP/1.1\r\nHost: %s\r\nConnection: close\r\n\r\n", path, hostname);
-    
-    // Trimiterea cererii HTTP
+
+    freeaddrinfo(res); // No longer needed
+
+    // Build HTTP GET request
+    snprintf(request, sizeof(request), "GET %s HTTP/1.1\r\nHost: %s\r\nConnection: close\r\n\r\n", path, hostname);
+
+    // Send request
     if (send(sockfd, request, strlen(request), 0) < 0) {
         perror("Send failed");
+        free(response);
+        close(sockfd); // Close socket on error
         exit(EXIT_FAILURE);
     }
-    
-    // Primirea răspunsului HTTP
+
+    // Receive response
     int total_bytes = 0;
     int bytes_received;
-    while ((bytes_received = recv(sockfd, response + total_bytes, MAX_RESPONSE_SIZE - total_bytes, 0)) > 0) {
+    while ((bytes_received = recv(sockfd, response + total_bytes, buffer_size - total_bytes, 0)) > 0) {
         total_bytes += bytes_received;
+        // Check if we need to increase the buffer size
+        if (total_bytes >= buffer_size) {
+            buffer_size *= 2;
+            char *new_response = realloc(response, buffer_size);
+            if (new_response == NULL) {
+                perror("Failed to reallocate memory");
+                free(response);
+                close(sockfd);
+                exit(EXIT_FAILURE);
+            }
+            response = new_response;
+        }
     }
-    
-    // Adăugare terminator pentru șirul de caractere
+
+    // Handle errors (e.g., bytes_received < 0)
+    if (bytes_received < 0) {
+        perror("Error receiving response");
+        free(response);
+        close(sockfd);
+        exit(EXIT_FAILURE);
+    }
+
+    // Add terminator
     response[total_bytes] = '\0';
-    
-    // Afișarea răspunsului primit
-    printf("Response:\n%s\n", response);
-    
-    // Închiderea socket-ului
+
+    // Find the end of headers
+    char *header_end = strstr(response, "\r\n\r\n");
+    if (header_end != NULL) {
+        // Print only the headers
+        *header_end = '\0';
+        printf("Response:\n%s\n", response);
+    } else {
+        printf("Response:\n%s\n", response);
+    }
+
+    // Close socket and free memory
     close(sockfd);
+    free(response);
 }
 
 int main() {
-    const char *hostname = "example.com"; // Schimbă cu hostname-ul dorit
-    const char *path = "/"; // Schimbă cu calea dorită
-    
+    const char *hostname = "www.google.com";
+    const char *path = "/";
+
     send_http_get(hostname, path);
-    
+
     return 0;
 }
