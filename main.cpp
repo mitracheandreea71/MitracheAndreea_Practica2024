@@ -26,6 +26,8 @@ struct CacheStruct {
     std::unordered_map<std::string, std::string> cacheData;
 };
 
+
+//pentru stocare date de la server in memorie dinamica
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     size_t realsize = size * nmemb;
     struct MemoryStruct* mem = (struct MemoryStruct*)userp;
@@ -61,15 +63,15 @@ void printHeaders(const std::vector<std::string>& headers) {
         std::cout << "     " << header;
     }
 }
-
+//gestionarea sesiunilor
 void handleSessions(CURL* curl, const std::string& url, struct SessionStruct* session) {
     if (session) {
         session->sessionId = "dummySessionID123";
         std::cout << "5. Handling session:\n   - Session ID: " << session->sessionId << std::endl;
     }
 }
-
-void handleCache(const std::string& url, struct MemoryStruct* chunk, struct CacheStruct* cache) {
+//cache management
+bool handleCache(const std::string& url, struct MemoryStruct* chunk, struct CacheStruct* cache) {
     std::cout << "2. Checking cache for URL: " << url << std::endl;
     auto it = cache->cacheData.find(url);
     if (it != cache->cacheData.end()) {
@@ -80,8 +82,10 @@ void handleCache(const std::string& url, struct MemoryStruct* chunk, struct Cach
         }
         chunk->memory = strdup(cachedData.c_str());
         chunk->size = cachedData.size();
+        return true;
     } else {
         std::cout << "   No cached data found for URL: " << url << std::endl;
+        return false;
     }
 }
 
@@ -95,6 +99,7 @@ int main() {
     curl = curl_easy_init();
 
     if(curl) {
+        //solicitare resurse externe
         std::string url = "https://jsonplaceholder.typicode.com/posts/1";
         
         struct MemoryStruct chunk;
@@ -111,11 +116,16 @@ int main() {
         std::cout << "1. Sending HTTP request to: " << url << std::endl;
 
         handleCache(url, &chunk, &cache);
-
-        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-
+        //solicitare resurse externe
+        int ret = curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        if(ret!=CURLE_OK)
+        {
+            std::cout<<"ERROR!!! Curl did not return with success";
+        }
+        //setarea header-elor HTTP
         struct curl_slist* headers = NULL;
         headers = curl_slist_append(headers, "Content-Type: application/json");
+        //autentificarea
         std::string authHeader = "Authorization: Bearer " + token.token;
         headers = curl_slist_append(headers, authHeader.c_str());
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
@@ -123,7 +133,7 @@ int main() {
         std::cout << "\n3. Setting HTTP headers:\n";
         std::cout << "   - Content-Type: application/json\n";
         std::cout << "   - " << authHeader << std::endl;
-
+        //manipulare cookie-uri
         curl_easy_setopt(curl, CURLOPT_COOKIEFILE, ""); 
         curl_easy_setopt(curl, CURLOPT_COOKIEJAR, "cookies.txt"); 
 
@@ -132,19 +142,20 @@ int main() {
         std::cout << "   - Using cookies from file: cookies.txt\n" << std::endl;
 
         handleSessions(curl, url, &session);
-
+        //gestionarea redirectarilor
         curl_easy_setopt(curl, CURLOPT_AUTOREFERER, 1L);
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-
+        //primirea de cereri HTTP
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*)&chunk);
-
+        //Manipulare cookie-uri
         curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, CookieCallback);
         curl_easy_setopt(curl, CURLOPT_HEADERDATA, (void*)&cookies);
 
         std::cout << "\n6. Sending request and awaiting response..." << std::endl;
+        //trimiterea de cereri HTTP
         res = curl_easy_perform(curl);
-
+        //tratarea erorilor si conditiilor de eroare
         if(res != CURLE_OK) {
             std::cerr << "   - Request failed: " << curl_easy_strerror(res) << std::endl;
         } else {
@@ -155,13 +166,14 @@ int main() {
             } else {
                 std::cerr << "   - Request failed. HTTP Status Code: " << http_code << std::endl;
             }
-
+            bool foundInCache = handleCache(url, &chunk, &cache);
             if (chunk.memory) {
                 std::cout << "\n8. Response received:\n";
                 printHeaders(cookies.cookies);
                 printFormattedResponse(chunk.memory);
+                
 
-                if (http_code == 200) {
+                if (http_code == 200 && !foundInCache) {
                     cache.cacheData[url] = std::string(chunk.memory);
                     std::cout << "\n9. Saving data to cache for URL: " << url << std::endl;
                 }

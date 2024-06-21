@@ -1,0 +1,3 @@
+/home/miitrache/practica2024/MitracheAndreea_Practica2024/CMakeFiles/clientHTTP.dir
+/home/miitrache/practica2024/MitracheAndreea_Practica2024/CMakeFiles/edit_cache.dir
+/home/miitrache/practica2024/MitracheAndreea_Practica2024/CMakeFiles/rebuild_cache.dir
