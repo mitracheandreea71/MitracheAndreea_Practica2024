@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/clientHTTP.dir/http_client.cpp.o"
+  "CMakeFiles/clientHTTP.dir/http_client.cpp.o.d"
   "CMakeFiles/clientHTTP.dir/main.cpp.o"
   "CMakeFiles/clientHTTP.dir/main.cpp.o.d"
   "clientHTTP"

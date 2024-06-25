@@ -81,12 +81,12 @@ clean: CMakeFiles/clientHTTP.dir/clean
 CMakeFiles/clientHTTP.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/clientHTTP.dir/build.make CMakeFiles/clientHTTP.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/clientHTTP.dir/build.make CMakeFiles/clientHTTP.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/miitrache/practica2024/MitracheAndreea_Practica2024/CMakeFiles --progress-num=1,2 "Built target clientHTTP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/miitrache/practica2024/MitracheAndreea_Practica2024/CMakeFiles --progress-num=1,2,3 "Built target clientHTTP"
 .PHONY : CMakeFiles/clientHTTP.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/clientHTTP.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/miitrache/practica2024/MitracheAndreea_Practica2024/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/miitrache/practica2024/MitracheAndreea_Practica2024/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/clientHTTP.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/miitrache/practica2024/MitracheAndreea_Practica2024/CMakeFiles 0
 .PHONY : CMakeFiles/clientHTTP.dir/rule

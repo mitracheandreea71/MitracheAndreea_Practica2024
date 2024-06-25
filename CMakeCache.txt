@@ -221,6 +221,9 @@ CURL_LIBRARY_DEBUG:FILEPATH=CURL_LIBRARY_DEBUG-NOTFOUND
 //Path to a library.
 CURL_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libcurl.so
 
+//The directory containing a CMake configuration file for JsonCpp.
+JsonCpp_DIR:PATH=JsonCpp_DIR-NOTFOUND
+
 //Arguments to supply to pkg-config
 PKG_CONFIG_ARGN:STRING=
 

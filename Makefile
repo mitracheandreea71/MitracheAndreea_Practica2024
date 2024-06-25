@@ -129,6 +129,30 @@ clientHTTP/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/clientHTTP.dir/build.make CMakeFiles/clientHTTP.dir/build
 .PHONY : clientHTTP/fast
 
+http_client.o: http_client.cpp.o
+.PHONY : http_client.o
+
+# target to build an object file
+http_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/clientHTTP.dir/build.make CMakeFiles/clientHTTP.dir/http_client.cpp.o
+.PHONY : http_client.cpp.o
+
+http_client.i: http_client.cpp.i
+.PHONY : http_client.i
+
+# target to preprocess a source file
+http_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/clientHTTP.dir/build.make CMakeFiles/clientHTTP.dir/http_client.cpp.i
+.PHONY : http_client.cpp.i
+
+http_client.s: http_client.cpp.s
+.PHONY : http_client.s
+
+# target to generate assembly for a file
+http_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/clientHTTP.dir/build.make CMakeFiles/clientHTTP.dir/http_client.cpp.s
+.PHONY : http_client.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... clientHTTP"
+	@echo "... http_client.o"
+	@echo "... http_client.i"
+	@echo "... http_client.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

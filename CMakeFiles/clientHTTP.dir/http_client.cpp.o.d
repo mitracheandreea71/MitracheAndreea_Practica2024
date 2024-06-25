@@ -1,5 +1,5 @@
-CMakeFiles/clientHTTP.dir/main.cpp.o: \
- /home/miitrache/practica2024/MitracheAndreea_Practica2024/main.cpp \
+CMakeFiles/clientHTTP.dir/http_client.cpp.o: \
+ /home/miitrache/practica2024/MitracheAndreea_Practica2024/http_client.cpp \
  /usr/include/stdc-predef.h \
  /home/miitrache/practica2024/MitracheAndreea_Practica2024/http_client.h \
  /usr/include/c++/11/string \
@@ -190,4 +190,8 @@ CMakeFiles/clientHTTP.dir/main.cpp.o: \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc
+ /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/fstream \
+ /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc

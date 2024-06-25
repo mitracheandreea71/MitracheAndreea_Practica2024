@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/miitrache/practica2024/MitracheAndreea_Practica2024/http_client.cpp" "CMakeFiles/clientHTTP.dir/http_client.cpp.o" "gcc" "CMakeFiles/clientHTTP.dir/http_client.cpp.o.d"
   "/home/miitrache/practica2024/MitracheAndreea_Practica2024/main.cpp" "CMakeFiles/clientHTTP.dir/main.cpp.o" "gcc" "CMakeFiles/clientHTTP.dir/main.cpp.o.d"
   )
 
