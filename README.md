@@ -48,4 +48,6 @@ Am adaugat o functie pentru descarcarea de fisiere.
 
 Am adaugat pentru autentificarea JWT (JSON Web Token) pentru adaugarea de securitate si autorizare la cererile HTTP.
 
+# 27.06.2024
 
+Am adaugat functionalitati
