@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/clientHTTP.dir/main.cpp.o -o clientHTTP  /usr/lib/x86_64-linux-gnu/libcurl.so 
+/usr/bin/c++ -g CMakeFiles/clientHTTP.dir/main.cpp.o CMakeFiles/clientHTTP.dir/http_client.cpp.o -o clientHTTP  /usr/lib/x86_64-linux-gnu/libcurl.so 

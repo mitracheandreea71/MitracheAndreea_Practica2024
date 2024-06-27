@@ -1,5 +1,5 @@
-CMakeFiles/clientHTTP.dir/main.cpp.o: \
- /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/main.cpp \
+CMakeFiles/clientHTTP.dir/http_client.cpp.o: \
+ /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/http_client.cpp \
  /usr/include/stdc-predef.h \
  /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/http_client.h \
  /usr/include/c++/11/string \

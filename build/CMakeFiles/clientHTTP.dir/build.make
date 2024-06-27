@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/miitrache/practica2024/MitracheAndreea_Practica2024
+CMAKE_SOURCE_DIR = /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/miitrache/practica2024/MitracheAndreea_Practica2024/build
+CMAKE_BINARY_DIR = /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/clientHTTP.dir/depend.make
@@ -72,29 +72,45 @@ include CMakeFiles/clientHTTP.dir/flags.make
 CMakeFiles/clientHTTP.dir/main.cpp.o: CMakeFiles/clientHTTP.dir/flags.make
 CMakeFiles/clientHTTP.dir/main.cpp.o: ../main.cpp
 CMakeFiles/clientHTTP.dir/main.cpp.o: CMakeFiles/clientHTTP.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miitrache/practica2024/MitracheAndreea_Practica2024/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/clientHTTP.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/clientHTTP.dir/main.cpp.o -MF CMakeFiles/clientHTTP.dir/main.cpp.o.d -o CMakeFiles/clientHTTP.dir/main.cpp.o -c /home/miitrache/practica2024/MitracheAndreea_Practica2024/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/clientHTTP.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/clientHTTP.dir/main.cpp.o -MF CMakeFiles/clientHTTP.dir/main.cpp.o.d -o CMakeFiles/clientHTTP.dir/main.cpp.o -c /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/main.cpp
 
 CMakeFiles/clientHTTP.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/clientHTTP.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/miitrache/practica2024/MitracheAndreea_Practica2024/main.cpp > CMakeFiles/clientHTTP.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/main.cpp > CMakeFiles/clientHTTP.dir/main.cpp.i
 
 CMakeFiles/clientHTTP.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/clientHTTP.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miitrache/practica2024/MitracheAndreea_Practica2024/main.cpp -o CMakeFiles/clientHTTP.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/main.cpp -o CMakeFiles/clientHTTP.dir/main.cpp.s
+
+CMakeFiles/clientHTTP.dir/http_client.cpp.o: CMakeFiles/clientHTTP.dir/flags.make
+CMakeFiles/clientHTTP.dir/http_client.cpp.o: ../http_client.cpp
+CMakeFiles/clientHTTP.dir/http_client.cpp.o: CMakeFiles/clientHTTP.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/clientHTTP.dir/http_client.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/clientHTTP.dir/http_client.cpp.o -MF CMakeFiles/clientHTTP.dir/http_client.cpp.o.d -o CMakeFiles/clientHTTP.dir/http_client.cpp.o -c /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/http_client.cpp
+
+CMakeFiles/clientHTTP.dir/http_client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/clientHTTP.dir/http_client.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/http_client.cpp > CMakeFiles/clientHTTP.dir/http_client.cpp.i
+
+CMakeFiles/clientHTTP.dir/http_client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/clientHTTP.dir/http_client.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/http_client.cpp -o CMakeFiles/clientHTTP.dir/http_client.cpp.s
 
 # Object files for target clientHTTP
 clientHTTP_OBJECTS = \
-"CMakeFiles/clientHTTP.dir/main.cpp.o"
+"CMakeFiles/clientHTTP.dir/main.cpp.o" \
+"CMakeFiles/clientHTTP.dir/http_client.cpp.o"
 
 # External object files for target clientHTTP
 clientHTTP_EXTERNAL_OBJECTS =
 
 clientHTTP: CMakeFiles/clientHTTP.dir/main.cpp.o
+clientHTTP: CMakeFiles/clientHTTP.dir/http_client.cpp.o
 clientHTTP: CMakeFiles/clientHTTP.dir/build.make
 clientHTTP: /usr/lib/x86_64-linux-gnu/libcurl.so
 clientHTTP: CMakeFiles/clientHTTP.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/miitrache/practica2024/MitracheAndreea_Practica2024/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable clientHTTP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable clientHTTP"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/clientHTTP.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -106,6 +122,6 @@ CMakeFiles/clientHTTP.dir/clean:
 .PHONY : CMakeFiles/clientHTTP.dir/clean
 
 CMakeFiles/clientHTTP.dir/depend:
-	cd /home/miitrache/practica2024/MitracheAndreea_Practica2024/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/miitrache/practica2024/MitracheAndreea_Practica2024 /home/miitrache/practica2024/MitracheAndreea_Practica2024 /home/miitrache/practica2024/MitracheAndreea_Practica2024/build /home/miitrache/practica2024/MitracheAndreea_Practica2024/build /home/miitrache/practica2024/MitracheAndreea_Practica2024/build/CMakeFiles/clientHTTP.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024 /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024 /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/build /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/build /home/miitrache/practica2024/MitracheAndreea2024/MitracheAndreea_Practica2024/build/CMakeFiles/clientHTTP.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/clientHTTP.dir/depend
 
